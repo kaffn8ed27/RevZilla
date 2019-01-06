@@ -4,6 +4,7 @@ Params: type:       string - the type of cookie being made
         flour:      string - type of flour used to make this cookie
         additives:  string - other ingredients used in the cookie
         glutenFree: boolean - if a CookieMonster has a gluten allergy, they will check this value. If 'true', a monster with an allergy can eat it.
+        ** Because of parameter destructuring, params must be passed as object properties BY NAME. **
 */
 class Cookie {
   constructor({type, flour, additives, glutenFree}) {
