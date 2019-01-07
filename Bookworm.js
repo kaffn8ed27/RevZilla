@@ -47,12 +47,12 @@ let Cindy = new Bookworm({ name: 'Cindy', favoriteGenre: 'romance' })
 let Grok = new Book({ title: 'Stranger in a Strange Land', author: 'Robert A. Heinlein', genre: 'sci-fi' })
 let BigBrother = new Book({ title: '1984', author: 'George Orwell', genre: 'sci-fi' })
 let BladeRunner = new Book({ title: 'Do Androids Dream of Electric Sheep?', author: 'Philip K. Dick', genre: 'sci-fi' })
-let Kiss = new Book({ title: 'Kiss an Angel', author: 'Susan Elizabeht Phillips', genre: 'romance' })
+let Kiss = new Book({ title: 'Kiss an Angel', author: 'Susan Elizabeth Phillips', genre: 'romance' })
 
-let Library = stockLibrary()
-
-Patricia.checkOutBook(Library)
-Cindy.checkOutBook(Library)
+let Library = stockLibrary({ Grok, BigBrother, BladeRunner, Kiss }).then(() => {
+    Patricia.checkOutBook(Library)
+    Cindy.checkOutBook(Library)
+})
 
 // Patricia.checkOutBook(Library)
 // Patricia.checkOutBook(Library)
