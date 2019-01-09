@@ -12,30 +12,34 @@ class Bookworm {
         this.name = name
         this.favoritGenre = favoriteGenre
         this.booksOut = 0
-        this.maxBooksOut = 5
+        this.maxBooksOut = 3
     }
 
-    checkOutBook(library = []) {
-        for (let book in library) {
+    checkOutBook(library = {}) {
+        for (let book of library) {
             if (book.genre === this.favoritGenre) {
                 if (book.available === true) {
                     if (this.booksOut < this.maxBooksOut) {
                         this.booksOut += 1
                         book.available = false
-                        console.log(`${this.name} says, 'I just checked out ${book.title} by ${book.author}!'`)
-                        break
+                        return (
+                            console.log(`${this.name} says, 'I just checked out ${book.title} by ${book.author}!'`),
+                            console.log(`${this.name} has ${this.booksOut} ${this.booksOut === 1 ? 'book' : 'books'} checked out.`))
                     } else {
-                        console.log(`${this.name} says, 'I want ${book.title} by, but I have too many books out already.'`)
-                        break
+                        return (
+                            console.log(`${this.name} says, 'I want ${book.title} by ${book.author}, but I have too many books out already.'`),
+                            console.log(`${this.name} has ${this.booksOut} ${this.booksOut === 1 ? 'book' : 'books'} checked out.`))
                     }
                 }
             }
         }
-       return console.log(`${this.name} has ${this.booksOut} ${this.booksOut === 1 ? 'book' : 'books'} checked out.`)
+        return (
+            console.log(`${this.name} says, 'I didn't find any books I like.`),
+            console.log(`${this.name} has ${this.booksOut} ${this.booksOut === 1 ? 'book' : 'books'} checked out.`))
     }
 }
 
-async function stockLibrary(books = {}) {
+async function stockLibrary(books = []) {
     // fill the library with books
     var library = []
     for (let book of books) {
@@ -45,28 +49,20 @@ async function stockLibrary(books = {}) {
 }
 
 
+let Kiss = new Book({ title: 'Kiss an Angel', author: 'Susan Elizabeth Phillips', genre: 'romance' })
 let Grok = new Book({ title: 'Stranger in a Strange Land', author: 'Robert A. Heinlein', genre: 'sci-fi' })
 let BigBrother = new Book({ title: '1984', author: 'George Orwell', genre: 'sci-fi' })
 let BladeRunner = new Book({ title: 'Do Androids Dream of Electric Sheep?', author: 'Philip K. Dick', genre: 'sci-fi' })
-let Kiss = new Book({ title: 'Kiss an Angel', author: 'Susan Elizabeth Phillips', genre: 'romance' })
+let TheyRemember = new Book({ title: 'Jurassic Park', author: 'Michael Crichton', genre: 'sci-fi' })
 
-// var library = []
-// library.push(Kiss)
-// library.push(Grok)
-// library.push(BigBrother)
-// library.push(BladeRunner)
-
-stockLibrary([Grok, BigBrother, BladeRunner, Kiss]).then((library) => {
-let Cindy = new Bookworm({ name: 'Cindy', favoriteGenre: 'romance' })
-let Patricia = new Bookworm({ name: 'Patricia', favoriteGenre: 'sci-fi' })
-console.log(library)
-Patricia.checkOutBook(library)
-Cindy.checkOutBook(library)
-
-    // Patricia.checkOutBook(library)
-    // Patricia.checkOutBook(library)
-    // Patricia.checkOutBook(library)
-
-    // Cindy.checkOutBook(library)
+stockLibrary([Grok, BigBrother, BladeRunner, Kiss, TheyRemember]).then((library) => {
+    let Cindy = new Bookworm({ name: 'Cindy', favoriteGenre: 'romance' })
+    let Patricia = new Bookworm({ name: 'Patricia', favoriteGenre: 'sci-fi' })
+    Cindy.checkOutBook(library)
+    Cindy.checkOutBook(library)
+    console.log()
+    Patricia.checkOutBook(library)
+    Patricia.checkOutBook(library)
+    Patricia.checkOutBook(library)
+    Patricia.checkOutBook(library)
 })
-
