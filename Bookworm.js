@@ -91,8 +91,9 @@ let TheyRemember = new Book({ title: 'Jurassic Park', author: 'Michael Crichton'
 // putting the books in an array - a library for the Bookworms to browse
 let library = [Grok, BigBrother, BladeRunner, Kiss, TheyRemember]
 
-// constructing some Bookworms
+// Cindy will only check out romance novels
 let Cindy = new Bookworm({ name: 'Cindy', favoriteGenre: 'romance' })
+// Patricia will only check out science fiction books
 let Patricia = new Bookworm({ name: 'Patricia', favoriteGenre: 'sci-fi' })
 
 // Cindy checks out the only romance novel in this library
