@@ -15,7 +15,7 @@ class Bookworm {
         this.maxBooksOut = 3
     }
 
-    checkOutBook(library = {}) {
+    checkOutBook(library = []) {
         for (let book of library) {
             if (book.genre === this.favoritGenre) {
                 if (book.available === true) {
